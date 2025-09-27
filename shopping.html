@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKADOR COFFEE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css"> 
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/tooplate-antique-cafe.css">
+    <style>
+        .tm-bg-brown { background-color: #694a28; }
+    </style>
+</head>
+<body>    
+    <!-- Intro -->
+    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="img/antique-cafe-bg-01.jpg">
+        <nav id="tm-nav" class="fixed w-full bg-black">
+            <div class="tm-container mx-auto px-2 md:py-6 text-right">
+                <ul class="mb-3 md:mb-0 text-2xl font-normal flex justify-end flex-col md:flex-row">
+                    <li class="inline-block mb-4 mx-4">
+                        <a href="shopping.html" class="tm-text-gold py-1 md:py-3 px-4">Your Order</a>
+                    </li>
+                    <li class="inline-block mb-4 mx-4">
+                        <a href="index.html" class="tm-text-gold py-1 md:py-3 px-4 external-link relative">Home</a>
+                    </li>  
+                </ul>
+            </div> 
+        </nav>
+
+        <div class="container mx-auto px-2 tm-intro-width">
+            <div class="sm:pb-60 sm:pt-48 py-20 pb-0">
+                <div class="bg-black bg-opacity-70 p-12 mb-5 text-center">
+                    <h1 class="text-white text-5xl tm-logo-font mb-5">MAKADOR COFFEE</h1>
+                    <h1 class="tm-text-gold text-5xl tm-logo-font mb-5">Your Order</h1>
+                </div>    
+
+                
+                <div id="shopping-cart-container" class="w-full max-w-screen-xl mx-auto bg-black bg-opacity-70 p-10 mb-5 text-center hidden">
+                    <div id="shopping-cart" class="max-w-3xl mx-auto sm:ml-0 space-y-4 p-8 tm-bg-brown rounded-xl shadow-lg">
+                       
+                    </div>
+                </div>
+
+                
+                <div id="summary-section" class="w-full max-w-screen-xl mx-auto bg-black bg-opacity-70 p-10 mb-5 text-center hidden">
+                    
+                    <div class="max-w-3xl mx-auto sm:ml-0 space-y-4 p-8 tm-bg-brown rounded-xl shadow-lg">
+                        <div class="flex justify-between items-center text-xl font-semibold mb-4 tm-text-brown">
+                            <span class="text-white">Total Items:</span>
+                            <span id="item-count-summary" class="tm-text-gold">0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-2xl font-extrabold border-t-2 border-gray-400 ">
+                            <span class="text-white">TOTAL:</span>
+                            <span id="cart-total" class="tm-text-gold">$0.00</span>
+                        </div>
+                    </div>  
+                    
+                    <div style="height: 2rem;"></div>
+
+
+                    
+                    <div class="inline-block">
+                        <a href="#menu" id="checkout-button" class="flex justify-center items-center bg-black bg-opacity-70 py-6 px-8 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
+                            <i class="fas fa-coffee mr-3"></i>
+                            <span>Proceed to Payment</span> 
+                        </a>
+                    </div>                                      
+                  
+                </div>
+
+                <!-- Message panier vide -->
+                <div id="empty-msg" class="max-w-3xl mx-auto mt-6 p-8 bg-black bg-opacity-70 p-10 mb-5 rounded-xl shadow-lg text-center text-gray-700 text-xl hidden">
+                    <p class="text-white text-2xl tm-logo-font mb-5">Your cart is currently empty.</p>
+                    <br>
+                    <a href="index.html" class="mt-4 inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-lg transition">
+                        Return to Menu
+                    </a>
+                </div>
+
+                
+            </div>                     
+        </div>  
+    </div>
+        
+    <div class="flex flex-col lg:flex-row justify-around items-center" style="background-color: black;">
+        <div class="text-white container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-center">
+            <span>Copyright 2025 MAKADOR coffee. All rights reserved.</span>
+        </div>  
+        <div class="text-white container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-center">
+            <span class="mt-5 md:mt-0">Design: HANEN RIGUEN</span>
+        </div>  
+    </div>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/jquery.singlePageNav.min.js"></script>
+    <script>
+        function checkAndShowHideMenu() {
+            if(window.innerWidth < 768) {
+                $('#tm-nav ul').addClass('hidden');                
+            } else {
+                $('#tm-nav ul').removeClass('hidden');
+            }
+        }
+
+        $(function(){
+            var tmNav = $('#tm-nav');
+            tmNav.singlePageNav({ filter: ':not(.external-link)' });
+            checkAndShowHideMenu();
+            window.addEventListener('resize', checkAndShowHideMenu);
+
+            $('#menu-toggle').click(function(){
+                $('#tm-nav ul').toggleClass('hidden');
+            });
+
+            $('#tm-nav ul li').click(function(){
+                if(window.innerWidth < 768) {
+                    $('#tm-nav ul').addClass('hidden');
+                }                
+            });
+
+            $(document).scroll(function() {
+                if($(document).scrollTop() > 100) {
+                    tmNav.addClass('scroll');
+                } else {
+                    tmNav.removeClass('scroll');
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]:not(.external-link)').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+                });
+            });
+        });
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function groupCart(cart) {
+            const grouped = {};
+            cart.forEach(item => {
+                if (grouped[item.name]) grouped[item.name].quantity += 1;
+                else grouped[item.name] = {...item, quantity: 1};
+            });
+            return Object.values(grouped);
+        }
+
+        function renderCart() {
+            const cartContainer = document.getElementById("shopping-cart-container");
+            const cartInner = document.getElementById("shopping-cart");
+            const emptyMsg = document.getElementById("empty-msg");
+            const summarySection = document.getElementById("summary-section");
+            const cartTotalElement = document.getElementById("cart-total");
+            const itemCountSummary = document.getElementById("item-count-summary");
+
+            cartInner.innerHTML = '';
+            let total = 0;
+
+            if(cart.length === 0){
+                cartContainer.classList.add('hidden');
+                summarySection.classList.add('hidden');
+                emptyMsg.classList.remove('hidden');
+                return;
+            }
+
+            emptyMsg.classList.add('hidden');
+            cartContainer.classList.remove('hidden');
+            summarySection.classList.remove('hidden');
+
+            const groupedCart = groupCart(cart);
+
+            groupedCart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center tm-bg-brown bg-opacity-80 rounded-xl p-4 shadow-lg border border-yellow-500 border-b border-white hover:shadow-2xl transition-all";
+
+                total += parseFloat(item.price) * item.quantity;
+
+                div.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 my-2 ml-8">
+                        <span class="inline-block text-white text-xl font-semibold px-5 py-1">${item.name}</span>
+                        <span class="tm-text-gold text-lg">$${item.price}</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-2xl">
+                        <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold transition" onclick="decreaseQuantity('${item.name}')">-</button>
+                        <span class="text-white font-bold px-3">${item.quantity}</span>
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold transition" onclick="increaseQuantity('${item.name}')">+</button>
+                    </div>
+                `;
+                cartInner.appendChild(div);
+            });
+
+            cartTotalElement.textContent = `$${total.toFixed(2)}`;
+            itemCountSummary.textContent = cart.length;
+        }
+
+        function increaseQuantity(name) {
+            const item = cart.find(i => i.name === name);
+            if(item) cart.push(item);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function decreaseQuantity(name) {
+            const index = cart.findIndex(i => i.name === name);
+            if(index !== -1) cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>
